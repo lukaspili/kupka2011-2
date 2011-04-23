@@ -1,8 +1,11 @@
 #{extends 'main.html' /}
 #{set title:'T\'écoutes quoi ?' /}
 
-<b>T'écoutes quoi ?</b>
-
-#{fbconnect.button label:'Login using your facebook account.', scope:'user_photos' /}
-
-${session.current().get('user')}
+<div class="row">
+  <div class="fourcol">
+    <p>Sidebar</p>
+  </div>
+  <div class="eightcol last">
+    <p>Main</p>
+  </div>
+</div>
