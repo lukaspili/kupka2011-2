@@ -1,12 +1,6 @@
 package models;
 
-<<<<<<< .merge_file_A16Kr4
 import com.google.gson.JsonObject;
-import play.db.jpa.Model;
-import play.mvc.Scope;
-
-=======
->>>>>>> .merge_file_q7Jha4
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
@@ -35,14 +29,9 @@ public class User extends Model {
     public static void register(String firstName, String lastName, String gender, String birthDate) {
 
     }
-<<<<<<< .merge_file_A16Kr4
 
     public static void facebookOAuthCallback(JsonObject data) {
 
     }
-    
-}
 
-=======
 }
->>>>>>> .merge_file_q7Jha4
