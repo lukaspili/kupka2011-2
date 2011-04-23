@@ -2,12 +2,14 @@ package models;
 
 import play.db.jpa.Model;
 
+import javax.persistence.Entity;
+
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
  */
+@Entity
 public class City extends Model {
 
-    public Long id;
     public String name;
 
     public City() {}

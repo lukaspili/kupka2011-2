@@ -2,27 +2,31 @@ package models;
 
 import play.db.jpa.Model;
 
+import javax.persistence.Entity;
+import java.util.List;
+
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
  */
+@Entity
 public class SocialService extends Model {
 
-    public enum Service {
-        FACEBOOK("facebook");
+//    public enum ServiceName {
+//        FACEBOOK("facebook");
+//
+//        ServiceName(String identification) {
+//            this.identification = identification;
+//        }
+//
+//        public String identification;
+//    }
+//    public ServiceName service;
 
-        Service(String identification) {
-            this.identification = identification;
-        }
+    public String name;
 
-        public String identification;
-    }
-
-    public Long id;
-    public Service service;
+    public Social social;
+    public List<Artist> artists;
 
     public SocialService() {}
 
-    public SocialService(Service service) {
-        this.service = service;
-    }
 }
