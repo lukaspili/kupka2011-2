@@ -1,0 +1,52 @@
+#{extends 'landing.html' /}
+#{set title:'T\'écoutes quoi ?' /}
+
+<div class="row landing">
+  <div class="twelvecol last">
+    <ul>
+      <li>
+        <img src="@{'/public/images/landing_bg.jpg'}">
+      </li>
+      <li>
+      <div style="margin:150px 130px">
+        <div id="fbconnect-wrapper" style="float:right">
+          <span class="fbconnect-header">
+            Lorem Ipsum
+          </span>
+          <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+          </p>
+          <div class="fb-connect-button">
+            #{fbbutton scope:'user_likes,email,user_birthday,user_location,user_relationship_details' /}
+          </div>
+        </div> 
+        </div>
+      </li>
+    </ul>
+  </div>
+<!--   <div class="sevencol">
+  </div>
+  <div class="fivecol last">
+    <div id="fbconnect-wrapper">
+      <span class="fbconnect-header">Lorem ipsum</span>
+
+      <form>
+        <label for="name">Username:</label>
+        <input type="text" name="name" id="name" />
+        <br />
+        <label for="mail">Password:</label>
+        <input type="text" name="mail" id="mail" />
+        <button id="fbconnect-button">Se connecter avec Facebook</button>
+      </form>
+      <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.
+      </p>
+    </div>
+  </div> -->
+</div>

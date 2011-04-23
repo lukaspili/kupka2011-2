@@ -5,10 +5,9 @@ import models.User;
 import play.data.validation.Valid;
 import play.mvc.Controller;
 
-import javax.persistence.Query;
-import javax.xml.validation.Validator;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
+import models.*;
 
 public class Application extends Controller {
 
@@ -40,5 +39,9 @@ public class Application extends Controller {
     }
 
 
+
+    public static void landing() {
+        render();
+    }
 
 }
