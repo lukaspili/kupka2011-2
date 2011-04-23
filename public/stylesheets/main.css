@@ -1029,8 +1029,8 @@ input { display:block;margin-bottom:12px; width:95%; padding: .4em; }
   height: 30px;
   font-size: 20px;
 }
-#fbconnect-wrapper button {
-  margin:20px 0 0 0;
+#fbconnect-wrapper .fb-connect-button {
+  text-align:center;
 }
 
 

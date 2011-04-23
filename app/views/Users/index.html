@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+<h3>Liste des utilisateurs :</h3>
+
+#{list items:users, as:'user'}
+    Name : ${user.firstName} <br />
+    City : ${user.city.name} <br />
+
+    Réseaux sociaux associés :
+    #{list items:user.socials, as:'social'}
+        ${social.name},
+    #{/list}<br />
+
+    Artistes préférés :
+    #{list items:user.artists, as:'artist'}
+        ${artist.name},
+    #{/list}<br />
+
+
+    <br />
+#{/list}
+
+<h3>Afficher un artiste</h3>
+
+<p>
+    Par l'utilisateur <b>lukas</b> et l'artiste <b>coldplay</b>: <br />
+    Nom : ${selectedArtist.name}
+    Réseaux sociaux : ${}
+
+</p>
+
+</body>
+</html>

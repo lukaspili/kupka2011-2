@@ -19,15 +19,9 @@
             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
             consequat.
           </p>
-
-          <form>
-            <label for="name">Username:</label>
-            <input type="text" name="name" id="name" />
-            <br />
-            <label for="mail">Password:</label>
-            <input type="text" name="mail" id="mail" />
-            <button id="fbconnect-button">Se connecter avec Facebook</button>
-          </form>
+          <div class="fb-connect-button">
+            #{fbbutton scope:'user_likes,email,user_birthday,user_location,user_relationship_details' /}
+          </div>
         </div> 
         </div>
       </li>

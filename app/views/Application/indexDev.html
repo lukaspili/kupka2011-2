@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+User cible : ${user.firstName} ${user.lastName}
+
+<h4>Covers</h4>
+#{list items:covers, as:'cover'}
+    ${cover.name}<br />
+#{/list}
+
+<h4>Matching users</h4>
+#{list items:usersMatching, as:'cover'}
+    ${cover.name}<br />
+#{/list}
+
+
+
+</body>
+</html>
