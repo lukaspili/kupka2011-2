@@ -21,6 +21,15 @@ Artist(akhenaton):
 Artist(boysnoize):
   name: Boys Noize
 
+Artist(nas):
+  name: Nas
+
+Artist(u2):
+  name: U2
+
+Artist(springsteen):
+  name: Bruce Springsteen
+
 City(paris):
   name: Paris
 
@@ -41,4 +50,4 @@ User(brice):
   email: bargenson@gmail.com
   city: paris
   socials: [facebook]
-  artists: [coldplay, iam, boysnoize, akhenaton]
+  artists: [coldplay, iam, boysnoize, akhenaton, nas, u2, springsteen]
