@@ -5,7 +5,7 @@ import models.User;
 import org.apache.commons.collections.CollectionUtils;
 import play.data.validation.Required;
 import play.mvc.Controller;
-import play.mvc.Scope;
+import play.mvc.With;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +13,18 @@ import java.util.List;
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
  */
+@With(Secure.class)
 public class Users extends Controller {
 
     public static User getUserFromSession() {
-        // simulate
-        User user = User.find("byEmail", "lukasz.pili@gmail.com").first();
-        return user;
+
+        String email = session.get("user");
+
+        if (null == email) {
+            Application.index();
+        }
+
+        return User.find("byEmail", email).first();
     }
 
     public static void index() {
@@ -30,7 +36,7 @@ public class Users extends Controller {
 
     public static void matchingUsers(@Required String email) {
 
-        if(null == email) {
+        if (null == email) {
             Application.notFound("Email not found");
         }
 
@@ -40,7 +46,7 @@ public class Users extends Controller {
         // get user to compare with
         User userCompare = User.find("byEmail", email).first();
 
-        if(null == userCompare) {
+        if (null == userCompare) {
             Application.notFound("User not found");
         }
 
@@ -62,9 +68,7 @@ public class Users extends Controller {
 
     public static void profileDev() {
 
-        String email = Scope.Session.current().get("user");
-
-        User user = User.find("byEmail", email).first();
+        User user = getUserFromSession();
 
         render(user);
     }

@@ -3,7 +3,7 @@
 # ~~~~
 
 # Landing page
-GET     /                                       Application.landing
+GET     /                                       Application.index
 
 # Home page
 GET     /home                                   Application.index
