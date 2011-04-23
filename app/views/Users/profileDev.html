@@ -18,12 +18,12 @@
 
     <tr>
         <td>Last name :</td>
-        <td>${user.firstName}</td>
+        <td>${user.lastName}</td>
     </tr>
 
     <tr>
         <td>E-mail :</td>
-        <td>${user.firstName}</td>
+        <td>${user.email}</td>
     </tr>
 
     <tr>
@@ -33,17 +33,17 @@
 
     <tr>
         <td>Date de naissance :</td>
-        <td>${user.firstName}</td>
+        <td>${user.birthDate.format('dd MMMM yyyy', 'fr')}</td>
     </tr>
 
     <tr>
         <td>Ville :</td>
-        <td>${user.firstName}</td>
+        <td>${user.city.name}</td>
     </tr>
 
     <tr>
         <td>Interessé par :</td>
-        <td>${user.firstName}</td>
+        <td>${user.interestedBy}</td>
     </tr>
 
 </table>
@@ -53,10 +53,12 @@
 <table>
     <tr>
         #{list items:user.artists, as:'artist'}
+        #{if artist.imagePath != null}
         <td style="padding:5px">
             <img src="${artist.imagePath}"/>
             ${artist.name}
         </td>
+        #{/if}
         #{/list}
     </tr>
 </table>
