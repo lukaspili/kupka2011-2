@@ -3,4 +3,6 @@
 
 <b>T'écoutes quoi ?</b>
 
-#{fbconnect.button label:'Login using your facebook account.' /}
+#{fbconnect.button label:'Login using your facebook account.', scope:'user_photos' /}
+
+${session.current().get('user')}
