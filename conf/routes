@@ -6,7 +6,9 @@
 GET     /                                       Application.landing
 
 # Home page
-GET     /home                                      Application.index
+GET     /home                                   Application.index
+
+GET     /welcome                                Users.profileDev
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

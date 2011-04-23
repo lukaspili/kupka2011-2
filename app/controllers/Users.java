@@ -5,6 +5,7 @@ import models.User;
 import org.apache.commons.collections.CollectionUtils;
 import play.data.validation.Required;
 import play.mvc.Controller;
+import play.mvc.Scope;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,15 @@ public class Users extends Controller {
 
 
         render(userSession, userCompare, matchingArtists, artistsSession, artistsCompare, percentSession, percentCompare);
+    }
+
+    public static void profileDev() {
+
+        String email = Scope.Session.current().get("user");
+
+        User user = User.find("byEmail", email).first();
+
+        render(user);
     }
 
 }
