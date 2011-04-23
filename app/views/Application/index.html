@@ -1,15 +1,8 @@
 #{extends 'main.html' /}
 #{set title:'T\'écoutes quoi ?' /}
 
-<div class="row">
+<div class="row home" style="min-height:600px">
   <div class="twelvecol last">
-
+    
   </div>
 </div>
-
-
-#{fbbutton scope:'user_likes,email,user_birthday,user_location,user_relationship_details' /}
-
-<br/>
-
-${session.current().get('user')}
