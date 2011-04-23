@@ -6,9 +6,24 @@
 </head>
 <body>
 
+<h3>Récupération des utilisateurs :</h3>
+
 #{list items:users, as:'user'}
-    ${user.firstName} <br />
-    ${user.city.name} <br /><br />
+    Name : ${user.firstName} <br />
+    City : ${user.city.name} <br />
+
+    Réseaux sociaux associés :
+    #{list items:user.socials, as:'social'}
+        ${social.name},
+    #{/list}<br />
+
+    Artistes préférés :
+    #{list items:user.artists, as:'artist'}
+        ${artist.name},
+    #{/list}<br />
+
+
+    <br />
 #{/list}
 
 </body>

@@ -2,7 +2,6 @@ package controllers;
 
 import models.User;
 import play.mvc.Controller;
-import play.test.Fixtures;
 
 import java.util.List;
 

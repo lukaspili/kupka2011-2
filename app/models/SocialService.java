@@ -25,7 +25,8 @@ public class SocialService extends Model {
     public String name;
 
     public Social social;
-    public List<Artist> artists;
+
+    //public List<Artist> artists;
 
     public SocialService() {}
 

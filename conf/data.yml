@@ -18,16 +18,21 @@ Artist(thexx):
 City(paris):
   name: Paris
 
+Social(facebook):
+  name: Facebook
+
 User(lukas):
   firstName: Lukasz
   lastName: Piliszczuk
   email: lukasz.pili@gmail.com
-  password: foobar
   city: paris
+  socials: [facebook]
+  artists: [thexx, iam]
 
 User(brice):
   firstName: Brice
   lastName: Argenson
   email: bargenson@gmail.com
-  password: plop
   city: paris
+  socials: [facebook]
+  artists: [coldplay, iam]
