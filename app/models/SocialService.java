@@ -1,8 +1,10 @@
 package models;
 
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 /**
@@ -11,20 +13,10 @@ import java.util.List;
 @Entity
 public class SocialService extends Model {
 
-//    public enum ServiceName {
-//        FACEBOOK("facebook");
-//
-//        ServiceName(String identification) {
-//            this.identification = identification;
-//        }
-//
-//        public String identification;
-//    }
-//    public ServiceName service;
-
+    @Required
     public String name;
 
-    public Social social;
+    @OneToMany
     public List<Artist> artists;
 
     public SocialService() {}

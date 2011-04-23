@@ -7,6 +7,6 @@ import play.db.jpa.Model;
  */
 public class Social extends Model {
 
-    public Long id;
-    public String name;
+    
+    
 }
