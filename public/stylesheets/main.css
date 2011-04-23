@@ -915,37 +915,123 @@ img {
  * Main
  */
 
-
-
-
-.container p {
-color: #444;
-line-height: 100px;
-background: #ddd;
-text-align: center;
-margin: 20px 0 0 0;
+body {
+  color: #444;
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.8);
+  -moz-text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.8);
+  -webkit-text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.8);
+  background-image: url(../images/body_bg.png);
+  background-color: #262B2F;
 }
 
-#main p {
-  height: 600px;
-  line-height:600px;
+#container {
+  max-width:1140px;
+  background: url(../images/bg_body.png) repeat;
+  background-color:#FFF;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding:0px;
+  margin: 40px auto;
+  -webkit-box-shadow: 1px 1px 5px #000000;
+  -moz-box-shadow: 1px 1px 5px #000000;
+  box-shadow: 2px 2px 15px #000000;
 }
 
+#header {
+  padding: 20px;
+}
 
+#footer {
+  height:125px;
+  font-size:18px;
+}
 
+#shareTwitter, #likeFacebook {
+  float:right;
+  margin: 25px 25px 0 0;
+}
+.blockquote {
+display: block;
+padding: 0 60px;
+width: 175px;
+margin-top:20px;
+}
 
+.blockquote:before, .blockquote:after {
+color: #006699;
+display: block;
+font-size: 300%;
+width: 50px;
+}
 
+.blockquote:before {
+content: '\201C';
+height: 20px;
+margin-left: -0.55em;
+}
 
+.blockquote:after {
+content: '\201D';
+height: 50px;
+margin-top: -35px;
+margin-left: 165px;
+}
 
+#main {
+  padding:0;
+  -webkit-box-shadow: 0px 1px 5px #000000;
+  -moz-box-shadow: 0px 1px 5px #000000;
+  box-shadow: 0px 1px 5px #000000;
+}
 
+#main .landing {
+  min-height:480px;
+  /*width:100%;*/
+  /*background: url(../images/landing_bg.jpg) no-repeat center center fixed;*/
+  background-size:100%;
+}
 
+#main .landing ul {
+  width:1140px;
+  height:680px;
+  overflow:hidden;
+  margin:0;
+}
+#main .landing ul li {
+  width:1280px;
+  height:843px;
+}
 
+label { display:block; font-size:15px; margin-bottom:5px;}
+input { display:block;margin-bottom:12px; width:95%; padding: .4em; }
 
-
-
-
-
-
+#fbconnect-wrapper {
+  width:400px;
+  margin:20px;
+  padding:20px;
+  background-color:rgba(255,255,255,0.8);
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+#fbconnect-wrapper .fbconnect-header {
+  text-align:left;
+  font-size:32px;
+  display:block;
+  margin-bottom:20px;
+}
+#fbconnect-wrapper p {
+  margin: 0 0 20px 0;
+}
+#fbconnect-wrapper form {
+  margin-bottom:20px;
+}
+#fbconnect-wrapper input {
+  height: 30px;
+  font-size: 20px;
+}
+#fbconnect-wrapper button {
+  margin:20px 0 0 0;
+}
 
 
 
