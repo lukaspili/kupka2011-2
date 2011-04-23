@@ -96,14 +96,24 @@ public class FBConnect extends Controller {
         String email = data.get("email").getAsString();
         String firstName = data.get("first_name").getAsString();
         String lastName = data.get("last_name").getAsString();
-        String strBirthDate = data.get("birthday").getAsString();
+
+
+        JsonElement birthdayElement = data.get("birthday");
+        String strBirthDate = birthdayElement != null ? birthdayElement.getAsString() : null;
         Date birthDate = dateFormat.parse(strBirthDate);
-        String strInterestedIn = data.get("interested_in").getAsString();
-        String cityName = data.get("location").getAsJsonObject().get("name").getAsString();
-        String strGender = data.get("gender").getAsString();
+
+        JsonElement interestedInElement = data.get("interested_in");
+        String strInterestedIn = interestedInElement != null ? interestedInElement.getAsString() : null;
+
+        JsonElement locationElement = data.get("location");
+        String cityName = locationElement != null ? locationElement.getAsJsonObject().get("name").getAsString() : null;
+
+        JsonElement genderElement = data.get("gender");
+        String strGender = genderElement != null ? genderElement.getAsString() : null;
         Gender gender = Gender.findByName(strGender);
 
-        JsonArray jsonMusics = data.get("musics").getAsJsonArray();
+        JsonElement musicsElement = data.get("musics");
+        JsonArray jsonMusics = musicsElement != null ? musicsElement.getAsJsonArray() : null;
         List<Artist> artists = new ArrayList<Artist>();
         for (JsonElement jsonMusic : jsonMusics) {
             String artistName = jsonMusic.getAsJsonObject().get("name").getAsString();

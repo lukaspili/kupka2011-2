@@ -27,6 +27,7 @@ import java.util.List;
 public class User extends Model {
 
     @Email
+    @Required
     public String email;
 
     @Required
@@ -36,11 +37,9 @@ public class User extends Model {
     public String lastName;
 
     @Enumerated(EnumType.STRING)
-    @Required
     public Gender gender;
 
     @Temporal(TemporalType.DATE)
-    @Required
     public Date birthDate;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
