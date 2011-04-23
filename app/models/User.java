@@ -1,12 +1,21 @@
 package models;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import models.enums.Gender;
+import play.data.validation.Email;
+import play.data.validation.Required;
+import play.db.jpa.Model;
+import play.mvc.Http;
+import play.mvc.Scope;
+
 import play.db.jpa.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,32 +26,46 @@ import java.util.List;
 @Entity
 public class User extends Model {
 
+    @Email
     public String email;
+
+    @Required
     public String firstName;
+
+    @Required
     public String lastName;
-    public String gender;
+
+    @Enumerated(EnumType.STRING)
+    @Required
+    public Gender gender;
+
+    @Temporal(TemporalType.DATE)
+    @Required
     public Date birthDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     public City city;
 
-    @ManyToMany
-    public List<Social> socials;
+    public String interestedBy;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     public List<Artist> artists;
 
+    public Long facebookId;
+
+
     public User() {
-        socials = new ArrayList<Social>();
-        artists = new ArrayList<Artist>();
-    }
-
-    public static void register(String firstName, String lastName, String gender, String birthDate) {
 
     }
 
-    public static void facebookOAuthCallback(JsonObject data) {
-
+    public User(String firstName, String lastName, String email, Gender gender, Date birthDate, City city, String interestedBy) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.gender = gender;
+        this.birthDate = birthDate;
+        this.city = city;
+        this.interestedBy = interestedBy;
     }
 
 }

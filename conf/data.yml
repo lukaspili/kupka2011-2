@@ -1,53 +1,48 @@
-# you describe your data using the YAML notation here
-# and then load them using Fixtures.load("data.yml")
-
-# Users(bob):
-#   email: bob@gmail.com
-#   password: secret
-#   fullname: Bob
-
-Artist(coldplay):
-  name: Coldplay
-
-Artist(iam):
-  name: I Am
-
-Artist(thexx):
-  name: The XX
-
-Artist(akhenaton):
-  name: Akhenaton
-
-Artist(boysnoize):
-  name: Boys Noize
-
-Artist(nas):
-  name: Nas
-
-Artist(u2):
-  name: U2
-
-Artist(springsteen):
-  name: Bruce Springsteen
-
-City(paris):
-  name: Paris
-
-Social(facebook):
-  name: Facebook
-
-User(lukas):
-  firstName: Lukasz
-  lastName: Piliszczuk
-  email: lukasz.pili@gmail.com
-  city: paris
-  socials: [facebook]
-  artists: [thexx, iam]
-
-User(brice):
-  firstName: Brice
-  lastName: Argenson
-  email: bargenson@gmail.com
-  city: paris
-  socials: [facebook]
-  artists: [coldplay, iam, boysnoize, akhenaton, nas, u2, springsteen]
+## you describe your data using the YAML notation here
+## and then load them using Fixtures.load("data.yml")
+#
+## Users(bob):
+##   email: bob@gmail.com
+##   password: secret
+##   fullname: Bob
+#
+#Artist(coldplay):
+#  name: Coldplay
+#
+#Artist(iam):
+#  name: I Am
+#
+#Artist(thexx):
+#  name: The XX
+#
+#Artist(akhenaton):
+#  name: Akhenaton
+#
+#Artist(boysnoize):
+#  name: Boys Noize
+#
+#Artist(nas):
+#  name: Nas
+#
+#Artist(u2):
+#  name: U2
+#
+#Artist(springsteen):
+#  name: Bruce Springsteen
+#
+#City(paris):
+#  name: Paris
+#
+#User(lukas):
+#  firstName: Lukasz
+#  lastName: Piliszczuk
+#  email: lukasz.pili@gmail.com
+#  city: paris
+#  artists: [thexx, iam]
+#
+#User(brice):
+#  firstName: Brice
+#  lastName: Argenson
+#  email: bargenson@gmail.com
+#  city: paris
+#  artists: [coldplay, iam, boysnoize, akhenaton, nas, u2, springsteen]
