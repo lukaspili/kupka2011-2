@@ -28,7 +28,7 @@
 
     <tr>
         <td>Genre :</td>
-        <td>${user.firstName}</td>
+        <td>${user.gender?.capFirst()}</td>
     </tr>
 
     <tr>
@@ -43,7 +43,7 @@
 
     <tr>
         <td>Interessé par :</td>
-        <td>${user.interestedBy}</td>
+        <td>${user.interestedBy?.capFirst()}</td>
     </tr>
 
 </table>
