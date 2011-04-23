@@ -18,6 +18,8 @@ public class Artist extends Model {
 
     @ManyToMany(mappedBy = "artists")
     public List<User> users;
+    
+    public String imagePath;
 
     public Artist() {}
 

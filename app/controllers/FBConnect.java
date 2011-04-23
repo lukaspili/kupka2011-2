@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import libs.lastfm.LastFMApi;
 import models.Artist;
 import models.City;
 import models.User;
@@ -89,27 +90,38 @@ public class FBConnect extends Controller {
                 throw new UnexpectedException("Module tags.fbconnect could not find access token and expires in facebook callback");
             }
         }
-        redirect("/");
+        redirect("/welcome");
     }
 
     public static User convertToUserAndSave(JsonObject data) throws ParseException {
         String email = data.get("email").getAsString();
         String firstName = data.get("first_name").getAsString();
         String lastName = data.get("last_name").getAsString();
-        String strBirthDate = data.get("birthday").getAsString();
+
+
+        JsonElement birthdayElement = data.get("birthday");
+        String strBirthDate = birthdayElement != null ? birthdayElement.getAsString() : null;
         Date birthDate = dateFormat.parse(strBirthDate);
-        String strInterestedIn = data.get("interested_in").getAsString();
-        String cityName = data.get("location").getAsJsonObject().get("name").getAsString();
-        String strGender = data.get("gender").getAsString();
+
+        JsonElement interestedInElement = data.get("interested_in");
+        String strInterestedIn = interestedInElement != null ? interestedInElement.getAsString() : null;
+
+        JsonElement locationElement = data.get("location");
+        String cityName = locationElement != null ? locationElement.getAsJsonObject().get("name").getAsString() : null;
+
+        JsonElement genderElement = data.get("gender");
+        String strGender = genderElement != null ? genderElement.getAsString() : null;
         Gender gender = Gender.findByName(strGender);
 
-        JsonArray jsonMusics = data.get("musics").getAsJsonArray();
+        JsonElement musicsElement = data.get("musics");
+        JsonArray jsonMusics = musicsElement != null ? musicsElement.getAsJsonArray() : null;
         List<Artist> artists = new ArrayList<Artist>();
         for (JsonElement jsonMusic : jsonMusics) {
             String artistName = jsonMusic.getAsJsonObject().get("name").getAsString();
             Artist artist = Artist.find("byName", artistName).first();
             if(artist == null) {
                 artist = new Artist(jsonMusic.getAsJsonObject().get("name").getAsString());
+                artist.imagePath = new LastFMApi("1cae0d3a28fc36a955ea9241610d113a").retrieveArtistImage(artistName, LastFMApi.PictureSize.LARGE_SQUARE) + "";
                 Artist.em().persist(artist);
             }
             artists.add(artist);

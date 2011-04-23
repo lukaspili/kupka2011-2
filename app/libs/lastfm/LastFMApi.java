@@ -5,7 +5,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import play.libs.ws.WSUrlFetch;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -17,12 +16,12 @@ public class LastFMApi {
 
     private static final String API_URL = "http://ws.audioscrobbler.com/2.0/?format=json";
 
-    
+
     public enum PictureSize {
         LARGE("large"), LARGE_SQUARE("largesquare"), MEDIUM("medium"), SMALL("small"), EXTRA_LARGE("extralarge");
 
         private String name;
-        
+
         PictureSize(String name) {
             this.name = name;
         }
@@ -41,20 +40,21 @@ public class LastFMApi {
 
         WSUrlFetch ws = new WSUrlFetch();
         JsonObject response = ws.newRequest(serviceURL).get().getJson().getAsJsonObject();
-        JsonArray images = response.get("images").getAsJsonObject().get("image").getAsJsonObject().get("sizes").getAsJsonObject().get("size").getAsJsonArray();
 
         try {
+            JsonArray images = response.get("images").getAsJsonObject().get("image").getAsJsonObject().get("sizes").getAsJsonObject().get("size").getAsJsonArray();
+
             for (JsonElement image : images) {
                 String imageSize = image.getAsJsonObject().get("name").getAsString();
-                if(imageSize.equals(size.name)) {
+                if (imageSize.equals(size.name)) {
                     String imagePath = image.getAsJsonObject().get("#text").getAsString();
                     return new URL(imagePath);
                 }
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+
         }
-        
+
         return null;
     }
 
