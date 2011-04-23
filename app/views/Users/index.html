@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h3>Récupération des utilisateurs :</h3>
+<h3>Liste des utilisateurs :</h3>
 
 #{list items:users, as:'user'}
     Name : ${user.firstName} <br />
@@ -25,6 +25,15 @@
 
     <br />
 #{/list}
+
+<h3>Afficher un artiste</h3>
+
+<p>
+    Par l'utilisateur <b>lukas</b> et l'artiste <b>coldplay</b>: <br />
+    Nom : ${selectedArtist.name}
+    Réseaux sociaux : ${}
+
+</p>
 
 </body>
 </html>
