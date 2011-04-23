@@ -5,9 +5,18 @@
     <title></title>
 </head>
 <body>
-foo
+
 #{list items:artists, as:'artist'}
-    ${artist.name}
+
+    Name : ${artist.name} <br />
+
+    Utilisateurs abonnés :
+    #{list items:artist.users, as:'user'}
+        ${user.firstName},
+    #{/list}<br />
+
+    <br />
+
 #{/list}
 </body>
 </html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body style="text-align:center">
+<h3>Matching users</h3>
+
+
+<table style="width:100%; text-align: center; border: 1px solid black;">
+    <tr>
+        <th style="text-align:center">${userSession.firstName} (connected)</th>
+        <th style="text-align:center">${userCompare.firstName} (to compare)</th>
+    </tr>
+
+
+    <tr>
+        <td style="text-align:center">
+            #{list items:artistsSession, as:'artist'}
+            ${artist.name}<br />
+            #{/list}
+        </td>
+
+        <td style="text-align:center">
+            #{list items:artistsCompare, as:'artist'}
+            ${artist.name}<br />
+            #{/list}
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2"></td>
+    </tr>
+
+    <tr>
+        <td style="text-align:center">Percent match : <b>${percentSession} %</b></td>
+        <td style="text-align:center">Percent match : <b>${percentCompare} %</b></td>
+    </tr>
+</table>
+
+<h3>Matching artists</h3>
+
+#{list items:matchingArtists, as:'artist'}
+    ${artist.name}
+#{/list}
+<br />
+
+</body>
+</html>

@@ -1,9 +1,12 @@
 #{extends 'main.html' /}
 #{set title:'T\'écoutes quoi ?' /}
 
-<b>T'écoutes quoi ?</b>
+<div class="row">
+  <div class="twelvecol last">
 
-*{#{fbconnect.button label:'Login using your facebook account.', scope:'user_likes,email,user_birthday,user_location,user_relationship_details' /}}*
+  </div>
+</div>
+
 
 #{fbbutton scope:'user_likes,email,user_birthday,user_location,user_relationship_details' /}
 

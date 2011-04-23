@@ -120,8 +120,8 @@ public class FBConnect extends Controller {
             String artistName = jsonMusic.getAsJsonObject().get("name").getAsString();
             Artist artist = Artist.find("byName", artistName).first();
             if(artist == null) {
-                artist = new Artist(jsonMusic.getAsJsonObject().get("name").getAsString());
-                artist.imagePath = new LastFMApi("1cae0d3a28fc36a955ea9241610d113a").retrieveArtistImage(artistName, LastFMApi.PictureSize.LARGE_SQUARE) + "";
+                artist = new LastFMApi("1cae0d3a28fc36a955ea9241610d113a").retrieveArtist(artistName, LastFMApi.PictureSize.LARGE);
+                if(artist == null) continue;
                 Artist.em().persist(artist);
             }
             artists.add(artist);

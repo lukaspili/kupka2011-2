@@ -3,6 +3,7 @@ package libs.lastfm;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import models.Artist;
 import play.libs.ws.WSUrlFetch;
 
 import java.net.MalformedURLException;
@@ -17,12 +18,12 @@ public class LastFMApi {
 
     private static final String API_URL = "http://ws.audioscrobbler.com/2.0/?format=json";
 
-    
+
     public enum PictureSize {
-        LARGE("large"), LARGE_SQUARE("largesquare"), MEDIUM("medium"), SMALL("small"), EXTRA_LARGE("extralarge");
+        LARGE("large"), MEDIUM("medium"), SMALL("small"), EXTRA_LARGE("extralarge");
 
         private String name;
-        
+
         PictureSize(String name) {
             this.name = name;
         }
@@ -35,32 +36,64 @@ public class LastFMApi {
         this.apiKey = apiKey;
     }
 
-    public URL retrieveArtistImage(String name, PictureSize size) {
-        String serviceURL = API_URL + "&api_key=" + apiKey + "&method=artist.getimages"
+    public Artist retrieveArtist(String name, PictureSize size) {
+        Artist artist = null;
+
+        String serviceURL = API_URL + "&api_key=" + apiKey + "&method=artist.search"
                 + "&artist=" + name + "&limit=1";
-
-        WSUrlFetch ws = new WSUrlFetch();
-        JsonObject response = ws.newRequest(serviceURL).get().getJson().getAsJsonObject();
-        JsonArray images = response.get("images").getAsJsonObject().get("image").getAsJsonObject().get("sizes").getAsJsonObject().get("size").getAsJsonArray();
-
         try {
-            for (JsonElement image : images) {
-                String imageSize = image.getAsJsonObject().get("name").getAsString();
-                if(imageSize.equals(size.name)) {
-                    String imagePath = image.getAsJsonObject().get("#text").getAsString();
-                    return new URL(imagePath);
+            WSUrlFetch ws = new WSUrlFetch();
+            JsonObject response = ws.newRequest(serviceURL).get().getJson().getAsJsonObject();
+            JsonObject artistObject = response.get("results").getAsJsonObject().get("artistmatches").getAsJsonObject().get("artist").getAsJsonObject();
+
+            String artistName = artistObject.get("name").getAsString();
+
+            if (artistName != null) {
+                artist = new Artist();
+
+                artist.name = artistName;
+
+                JsonArray images = artistObject.get("image").getAsJsonArray();
+                for (JsonElement image : images) {
+                    try {
+                        String imageSize = image.getAsJsonObject().get("size").getAsString();
+                        if (imageSize.equals(size.name)) {
+                            String imagePath = image.getAsJsonObject().get("#text").getAsString();
+                            artist.imagePath = new URL(imagePath).toString();
+                            break;
+                        }
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        
-        return null;
+        } catch (Exception e) {}
+
+        return artist;
     }
 
     public static void main(String... args) {
         LastFMApi fmApi = new LastFMApi("1cae0d3a28fc36a955ea9241610d113a");
-        System.out.println(fmApi.retrieveArtistImage("TTC", PictureSize.LARGE_SQUARE));
+
+        Artist artist = fmApi.retrieveArtist("* IAM *", PictureSize.LARGE);
+        System.out.println(artist.name);
+        System.out.println(artist.imagePath);
+
+        artist = fmApi.retrieveArtist("* LinkinPark *", PictureSize.LARGE);
+        System.out.println(artist.name);
+        System.out.println(artist.imagePath);
+
+        artist = fmApi.retrieveArtist("Bjorc", PictureSize.LARGE);
+        System.out.println(artist.name);
+        System.out.println(artist.imagePath);
+
+        artist = fmApi.retrieveArtist("2 be 3", PictureSize.LARGE);
+        System.out.println(artist.name);
+        System.out.println(artist.imagePath);
+
+        artist = fmApi.retrieveArtist("admiralty", PictureSize.LARGE);
+        System.out.println(artist.name);
+        System.out.println(artist.imagePath);
     }
 
 }
