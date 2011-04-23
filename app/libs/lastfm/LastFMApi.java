@@ -18,12 +18,12 @@ public class LastFMApi {
 
     private static final String API_URL = "http://ws.audioscrobbler.com/2.0/?format=json";
 
-
+    
     public enum PictureSize {
         LARGE("large"), MEDIUM("medium"), SMALL("small"), EXTRA_LARGE("extralarge");
 
         private String name;
-
+        
         PictureSize(String name) {
             this.name = name;
         }

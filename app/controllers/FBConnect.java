@@ -90,7 +90,7 @@ public class FBConnect extends Controller {
                 throw new UnexpectedException("Module tags.fbconnect could not find access token and expires in facebook callback");
             }
         }
-        redirect("/");
+        redirect("/welcome");
     }
 
     public static User convertToUserAndSave(JsonObject data) throws ParseException {
