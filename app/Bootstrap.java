@@ -11,7 +11,7 @@ public class Bootstrap extends Job {
     @Override
     public void doJob() throws Exception {
 
-        Fixtures.deleteAllModels();
-        Fixtures.loadModels("data.yml");
+        //Fixtures.deleteAllModels();
+        //Fixtures.loadModels("data.yml");
     }
 }
