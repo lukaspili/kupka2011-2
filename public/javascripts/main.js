@@ -19,10 +19,27 @@ $(document).ready(function(){
 
   $('#main .landing ul').smart3d();
 
-  $('#fbconnect-button').button({
+  $('#profile-button-ask').button({
     icons: {
-      primary: 'ui-icon-key'
+      primary: 'ui-icon-volume-on'
     }
+  });
+  $('#profile-button-send').button({
+    icons: {
+      primary: 'ui-icon-heart'
+    }
+  });
+
+  $('#dialog').dialog({
+    title: 'Attention ! vous utilisez un prototype',
+    autoOpen: true,
+    width: 600,
+    buttons: {
+      "Ok": function() { 
+        $(this).dialog("close"); 
+      }
+    },
+    modal: true
   });
 });
 

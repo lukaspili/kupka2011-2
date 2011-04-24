@@ -981,7 +981,7 @@ margin-left: 200px;
   margin-top:5px;
   background: url(../images/container_bg.png) repeat;
   height: 75px;
-  width: 560px;
+  width: 650px;
   float: right;
   -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.55);
   -khtml-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.55);
@@ -997,8 +997,7 @@ margin-left: 200px;
   display:inline-block;
   color:#FFF;
   font-size:20px;
-  border-left:1px solid #444;
-  padding-left:17px;
+  padding-left:40px;
 }
 #main {
   padding:0;
@@ -1029,12 +1028,6 @@ label { display:block; font-size:15px; margin-bottom:5px;}
 input { display:block;margin-bottom:12px; width:95%; padding: .4em; }
 
 #fbconnect-wrapper {
-/*  width:400px;
-  margin:20px;
-  padding:20px;
-  background-color:rgba(255,255,255,0.8);
-  -moz-border-radius: 10px;
-  border-radius: 10px;*/
   color:#FFF;
   position:relative;
   bottom:650px;
@@ -1068,13 +1061,15 @@ input { display:block;margin-bottom:12px; width:95%; padding: .4em; }
 
 
 
-.profile-col {
+.profile-left-col {
   background-color:white;
+  border-right:1px solid #DDD;
+  min-height:1000px;
 }
 .profile-col-wrapper {
   margin:20px;
 }
-.profile-col h1 {
+.profile-left-col h1 {
   font-size:30px;
   margin-bottom:10px;
 }
@@ -1092,10 +1087,10 @@ input { display:block;margin-bottom:12px; width:95%; padding: .4em; }
   color:#666;
   text-shadow:none;
 }
-.profile-col ul {
+.profile-left-col ul {
   margin-left:0;
 }
-.profile-col ul li {
+.profile-left-col ul li {
   list-style-type:none;
   height:20px;
   line-height:20px;
@@ -1103,9 +1098,120 @@ input { display:block;margin-bottom:12px; width:95%; padding: .4em; }
 }
 
 
+.profile-right-col {
+  margin-top:20px;
+}
+.artist-list {
+  margin-left:0;
+}
+.artist-list li {
+  list-style-type:none;
+  display:inline-block;
+  margin-right:18px;
+  line-height:20px;
+  padding-left:0;
+  width:126px;
+  height:180px;
+}
+.artist-pic {
+  position: relative;
+  float: left;
+  width: 126px;
+  height: 126px;
+  margin: 0 30px 10px 0;
+  -webkit-box-shadow: 1px 1px 5px #555;
+  -moz-box-shadow: 1px 1px 5px #555;
+  box-shadow: 1px 1px 5px #555;
+}
+.artist-name {
+  display:block;
+  width:126px;
+  white-space:nowrap;
+  overflow:hidden;
+}
+
+h2 {
+  margin:0px 0px 30px 0;
+  background: url(../images/container_bg.png) repeat;
+  height: 40px;
+  line-height:40px;
+  width: 300px;
+  -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.55);
+  -khtml-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.55);
+  -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.55);
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  color:#FFF;
+  font-size:20px;
+  padding-left:20px;
+}
+.profile-button button {
+  /*width:300px;*/
+}
 
 
+ul.user-list { margin-left: -20px; }
+ul.user-list li { position: relative; width: 200px; height: 190px; float: left; margin-left: 20px; list-style-type:none;}
+ul.user-list li div.album { margin: 0 0 48px 0; display: inline; background: #; width: 200px; height: 120px; position: absolute; text-decoration: none; -webkit-transition: all .15s linear; color: #333; left: 0px; top: 0px; }
+ul.user-list img { width: 120px; position: relative; z-index: 30; float: left; -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.5); -webkit-border-radius: 2px; }
 
+ul.user-list li div.album div { display: block; opacity: .95; text-align: center; -webkit-transition: all .25s linear; clear: left; width: 120px;  }
+ul.user-list li div.album div h5 { text-align: center; }
+ul.user-list li div.album:hover div { opacity: 1; }
+
+ul.user-list li div.album span.vinyl { width: 116px; height: 116px; z-index: 1; display: block; -webkit-transition: all .25s linear;  position: absolute; top: 2px; left: 2px; margin-left: 16px; }
+ul.user-list li div.album span.vinyl div {
+  position: absolute; 
+  top: 2px; 
+  left: 2px; 
+  display: block; 
+  z-index: 10; 
+  width: 112px; 
+  height: 112px; 
+  -webkit-border-radius: 59px; 
+  -moz-border-radius: 59px; 
+  -webkit-box-shadow: 0 0 6px rgba(0,0,0,.5); 
+  -webkit-transition: all .25s linear; 
+  overflow: hidden; 
+  border: solid 1px black; 
+  background:
+    -webkit-gradient(
+      linear, left top, left bottom, 
+      from(transparent),
+      color-stop(0.1, transparent),
+      color-stop(0.5, rgba(255,255,255,0.25)),
+      color-stop(0.9, transparent), 
+      to(transparent)),
+    -webkit-gradient(
+      radial, 56 56, 10, 56 56, 114, 
+      from(transparent),
+      color-stop(0.01, transparent),
+      color-stop(0.021, rgba(0,0,0,1)),
+      color-stop(0.09, rgba(0,0,0,1)),
+      color-stop(0.1, rgba(28,28,28,1)),
+      to(rgba(28,28,28,1)));
+  border-top: 1px solid rgba(255,255,255,.25);
+}
+ul.user-list li div.album:hover span.vinyl { -webkit-transform: translateX(60px); }
+ul.user-list li div.album:hover span.vinyl div { -webkit-transform: rotate(120deg); border-top: 0; border-left: 1px solid rgba(255,255,255,.25); }
+  
+  ul.user-list li span.gloss { display: block; position: absolute; top: 0; left: 0; width: 120px; height: 120px; background: url(../images/sheen3.png) no-repeat; z-index: 100; }
+
+ul.user-list li div.album ul.actions { display: block; position: absolute; width: 60px; -moz-border-radius: 3px; -webkit-border-radius: 3px;left: 35px; top: 0px; height: 114px; z-index: 20; -webkit-transition: all 0.25s linear; }
+ul.user-list li div.album:hover ul.actions { -webkit-transform: translateX(60px); } 
+
+ul.user-list li div.album ul.actions li { display: block; position: absolute; height: 20px; width: 20px; left: 10px; top: 22px; background: -webkit-gradient(linear, left top, left bottom, from(black), to(#333)); -webkit-border-radius: 10px; -moz-border-radius: 10px; -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.15); }
+ul.user-list li div.album ul.actions li:hover { background: -webkit-gradient(linear, left top, left bottom, from(#333), to(black)); }
+ul.user-list li div.album ul.actions li.info { top: 48px; left: 19px; }
+ul.user-list li div.album ul.actions li a { display: block; width: 20px; height: 20px; }
+ul.user-list li div.album ul.actions li.play-pause a { background: url(../images/play-button.png) no-repeat center center; }
+ul.user-list li div.album ul.actions li.info a { background: url(../images/info.png) no-repeat center center; }
+
+ul.user-list li { text-shadow: 0 2px 3px rgba(0,0,0,.75); }
+
+ul.user-list h5 { padding-top: 8px; color: #fff; }
+ul.user-list small { color: #fff; opacity: .75; }
+ 
 
 
 
