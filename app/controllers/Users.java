@@ -7,10 +7,8 @@ import play.data.validation.Required;
 import play.mvc.Controller;
 import play.mvc.With;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.jar.Manifest;
 
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
@@ -36,11 +34,14 @@ public class Users extends Controller {
         render(users);
     }
 
-    public static void matchingUsers(@Required String email) {
+    public static void matchingUser(@Required String email) {
 
         if (null == email) {
-            Application.notFound("Email not found");
+            notFound("Email not found");
+            //Application.notFound("Email not found");
         }
+
+        //validation.errorsMap().size()
 
         // get user from session
         User userSession = getUserFromSession();
@@ -57,8 +58,9 @@ public class Users extends Controller {
         List<Artist> artistsCompare = userCompare.artists;
 
         // get the matching count
-        List<Artist> matchingArtists = new ArrayList<Artist>();
-        matchingArtists.addAll(CollectionUtils.retainAll(artistsSession, artistsCompare));
+        List<Artist> matchingArtists = new ArrayList<Artist>(artistsSession);
+        matchingArtists.retainAll(artistsCompare);
+        //matchingArtists.addAll(CollectionUtils.retainAll(artistsSession, artistsCompare));
 
         // get the matching percent
         Integer percentSession = matchingArtists.size() * 100 / artistsSession.size();
@@ -105,16 +107,14 @@ public class Users extends Controller {
         // get all users
         List<User> users = User.findAll();
 
-        Map<Integer, User> matchingUsers = new HashMap<Integer, User>();
-
-        //matchingUsers = List<Integer> matchingPercents = new ArrayList<Integer>();
+        List<MatchingWrapper> matchingUsers = new ArrayList<MatchingWrapper>();
 
         List<Artist> artistsTest = Artist.findAll();
 
         count = 0;
         for (User item : users) {
 
-            if(count == 10) {
+            if (count == 10) {
                 continue;
             }
 
@@ -126,17 +126,41 @@ public class Users extends Controller {
             List<Artist> artistsCompare = item.artists;
 
             // get the matching list
-            List<Artist> matchingArtists = new ArrayList<Artist>();
-            matchingArtists.addAll(CollectionUtils.retainAll(artistsSession, artistsCompare));
+            List<Artist> matchingArtists = new ArrayList<Artist>(artistsSession);
+            matchingArtists.retainAll(artistsCompare);
+            //matchingArtists.addAll(CollectionUtils.retainAll(artistsSession, artistsCompare));
 
             // get the matching percent
             Integer percentSession = matchingArtists.size() * 100 / artistsSession.size();
 
-            matchingUsers.put(percentSession, item);
+            MatchingWrapper wrapper = new MatchingWrapper(item, percentSession);
+            matchingUsers.add(wrapper);
 
             count++;
         }
 
+        Collections.sort(matchingUsers);
+
         render(user, userArtists, matchingUsers);
+    }
+
+    public static class MatchingWrapper implements Comparable {
+
+        public User user;
+        public Integer percent;
+
+        public MatchingWrapper(User user, Integer percent) {
+            this.user = user;
+            this.percent = percent;
+        }
+
+        public int compareTo(Object o) {
+
+            if(!(o instanceof MatchingWrapper)) {
+                return -1;
+            }
+
+            return this.percent.compareTo(((MatchingWrapper) o).percent) * -1;
+        }
     }
 }

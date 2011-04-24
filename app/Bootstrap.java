@@ -16,7 +16,7 @@ public class Bootstrap extends Job {
         //Fixtures.loadModels("data.yml");
 
         if(User.find("byEmail", "tatianay@gmail.com").first() == null) {
-            Fixtures.loadModels("data.yml");
+            //Fixtures.load("data.yml");
         }
     }
 }

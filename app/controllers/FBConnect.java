@@ -9,6 +9,7 @@ import models.Artist;
 import models.City;
 import models.User;
 import models.enums.Gender;
+import play.Logger;
 import play.exceptions.UnexpectedException;
 import play.libs.WS;
 import play.libs.ws.WSUrlFetch;
@@ -29,11 +30,16 @@ public class FBConnect extends Controller {
 
     private static final String GENERAL_PROFILE_URL = "https://graph.facebook.com/me?access_token=";
     private static final String MUSIC_PROFILE_URL = "https://graph.facebook.com/me/music?access_token=";
-    private static final String CLIENT_ID = "157297254334553";
-    private static final String CLIENT_SECRET = "702df18b116a24006e240cbe8168b62f";
+
+    //private static final String CLIENT_ID = "157297254334553";
+    //private static final String CLIENT_SECRET = "702df18b116a24006e240cbe8168b62f";
+
+    private static final String CLIENT_ID = "161643137230188";
+    private static final String CLIENT_SECRET = "fa5e1054ada3887228632d93077b9539";
 
 
     public static void callback() {
+        Logger.info("Callback");
         String code = params.get("code");
         String error = params.get("error");
         if (error != null) {
@@ -84,7 +90,7 @@ public class FBConnect extends Controller {
                     Scope.Session.current().put("user", email);
 
                 } catch (Exception e) {
-                    throw new RuntimeException("Unexpected: " + e);
+                    throw new RuntimeException("Unexpected: ", e);
                 }
             } else {
                 throw new UnexpectedException("Module tags.fbconnect could not find access token and expires in facebook callback");
@@ -94,6 +100,7 @@ public class FBConnect extends Controller {
     }
 
     public static User convertToUserAndSave(JsonObject data) throws ParseException {
+        Logger.info("convertToUserAndSave");
         String email = data.get("email").getAsString();
         String firstName = data.get("first_name").getAsString();
         String lastName = data.get("last_name").getAsString();
@@ -118,6 +125,7 @@ public class FBConnect extends Controller {
         List<Artist> artists = new ArrayList<Artist>();
         for (JsonElement jsonMusic : jsonMusics) {
             String artistName = jsonMusic.getAsJsonObject().get("name").getAsString();
+            Logger.info("Search " + artistName);
             Artist artist = new LastFMApi("1cae0d3a28fc36a955ea9241610d113a").retrieveArtist(artistName, LastFMApi.PictureSize.LARGE_SQUARE);
             if (artist != null) {
                 Artist artistInDb = Artist.find("byName", artist.name).first();

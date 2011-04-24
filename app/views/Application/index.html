@@ -2,19 +2,34 @@
 #{set title:'T\'écoutes quoi ?' /}
 
 <div class="row landing">
-  <div class="twelvecol last" style="height:680px">
-    <ul>
-      <li>
-        <img src="@{'/public/images/landing_bg.jpg'}">
-      </li>
-    </ul>
-      <div id="fbconnect-wrapper">
+    <div class="twelvecol last" style="height:680px">
+        <ul>
+            <li>
+                <img src="@{'/public/images/landing_bg.jpg'}">
+            </li>
+        </ul>
+        <div id="fbconnect-wrapper">
         <span class="fbconnect-header">
           Tout a commencé en s'échangeant quelques chansons ...
         </span>
-        <div class="fb-connect-button">
-          #{fbbutton scope:'user_likes,email,user_birthday,user_location,user_relationship_details' /}
-        </div> 
+
+            <div class="fb-connect-button">
+                #{fbbutton scope:'user_likes,email,user_birthday,user_location,user_relationship_details' /}
+            </div>
+        </div>
     </div>
-  </div>
+</div>
+
+<div id="dialog">
+    <p>Bienvenue sur le premier site de rencontre par affinité musicale.<br/><br/></p>
+
+    <p>Vous pourrez dés à présent voir les photos des personnes qui ont des goûts musicaux similaires avec vous !
+        Testez-la démo, faites-vous plaisir et crashez le serveur ;)<br/><br/></p>
+
+    <p>N'oubliez pas de nous suivre sur <a style="color: blue;" href="http://twitter.com/#!/tecoutesquoi">Twitter
+        @tecoutesquoi</a> et sur notre page <a style="color: blue;"
+                                               href="https://www.facebook.com/LaMusique">facebook</a> pour être au
+        courant du lancement officiel et nous
+        dire ce
+        que vous en pensez<br/></p>
 </div>

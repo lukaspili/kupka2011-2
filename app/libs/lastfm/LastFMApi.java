@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import models.Artist;
+import play.Logger;
 import play.libs.ws.WSUrlFetch;
 
 import java.net.MalformedURLException;
@@ -57,6 +58,7 @@ public class LastFMApi {
                 if(imagePath != null) artist.imagePath = imagePath.toString();
             }
         } catch (Exception e) {
+            Logger.error(e, "LASTFM error");
         }
 
         return artist;
@@ -83,7 +85,9 @@ public class LastFMApi {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-        } catch (Exception e) { }
+        } catch (Exception e) {
+            Logger.error(e, "LASTFM error in retrieveArtistImage");
+        }
 
         return null;
     }

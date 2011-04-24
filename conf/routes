@@ -9,6 +9,7 @@ GET     /                                       Application.index
 GET     /home                                   Application.index
 
 GET     /welcome                                Users.profile
+GET     /view                                   Users.matchingUser
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
