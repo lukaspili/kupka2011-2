@@ -8,6 +8,7 @@ import play.mvc.Controller;
 import java.util.*;
 
 import models.*;
+import play.mvc.Scope;
 
 public class Application extends Controller {
 
@@ -38,7 +39,12 @@ public class Application extends Controller {
         render(message);
     }
 
-
+    public static void sendVideoMessage(Long senderId, Long recipientId, String videoPath) {
+        User recipient = User.findById(recipientId);
+        User sender = User.findById(senderId);
+        VideoMessage videoMessage = new VideoMessage(videoPath, recipient, sender);
+        videoMessage.save();
+    }
 
     public static void landing() {
         render();

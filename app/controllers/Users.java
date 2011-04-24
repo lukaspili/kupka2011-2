@@ -62,7 +62,7 @@ public class Users extends Controller {
 
     public static void profileDev() {
 
-        String email = Scope.Session.current().get("user");
+        String email = session.get("user");
 
         User user = User.find("byEmail", email).first();
 
