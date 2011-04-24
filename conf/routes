@@ -3,12 +3,12 @@
 # ~~~~
 
 # Landing page
-GET     /                                       Application.landing
+GET     /                                       Application.index
 
 # Home page
 GET     /home                                   Application.index
 
-GET     /welcome                                Users.profileDev
+GET     /welcome                                Users.profile
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
