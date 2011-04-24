@@ -946,7 +946,7 @@ body {
   font-size:14px;
 }
 
-#shareTwitter, #likeFacebook {
+#shareTwitter, #likeFacebook, #followTwitter, #becomeFan {
   float:right;
   margin: 25px 25px 0 0;
 }
