@@ -1209,13 +1209,21 @@ ul.user-list li div.album ul.actions li.info a { background: url(../images/info.
 
 ul.user-list li { text-shadow: 0 2px 3px rgba(0,0,0,.75); }
 
-ul.user-list h5 { padding-top: 8px; color: #fff; }
-ul.user-list small { color: #fff; opacity: .75; }
+ul.user-list h5 { padding-top: 8px; color: #444; font-size:18px; }
+ul.user-list small { color: #444; opacity: .75; }
  
 
+ul.user-list a img {
+  display:block;
+  width:119px;
+  height:119px;
+  background-position:50% 50%;
+}
 
 
-
+#dialog {
+  display:none;
+}
 
 
 

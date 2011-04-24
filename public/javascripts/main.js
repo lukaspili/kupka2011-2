@@ -30,17 +30,29 @@ $(document).ready(function(){
     }
   });
 
-  $('#dialog').dialog({
-    title: 'Attention ! vous utilisez un prototype',
-    autoOpen: true,
-    width: 600,
-    buttons: {
-      "Ok": function() { 
-        $(this).dialog("close"); 
-      }
-    },
-    modal: true
-  });
+  // $('#dialog').dialog({
+  //   title: 'Attention ! vous utilisez un prototype',
+  //   autoOpen: true,
+  //   width: 600,
+  //   buttons: {
+  //     "Ok": function() { 
+  //       $(this).dialog("close"); 
+  //     }
+  //   },
+  //   modal: true
+  // });
+
+  $('.progressbar').progressbar({value:0}).width(116);
+
+  function setProgressBars() {
+    $(".progressbar").each(function(index){
+          var percent  = $(this).data('percent');
+          $(this).progressbar({
+                value: percent
+        });
+      });
+  }
+  setTimeout(setProgressBars, 1000);
 });
 
 
