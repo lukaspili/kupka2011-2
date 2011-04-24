@@ -6,6 +6,7 @@ import java.util.*;
 
 import models.*;
 import play.mvc.Scope;
+import play.test.Fixtures;
 
 public class Application extends Controller {
 
@@ -26,6 +27,10 @@ public class Application extends Controller {
 
     public static void landing() {
         render();
+    }
+
+    public static void removeAll() {
+        Fixtures.deleteAllModels();
     }
 
 }

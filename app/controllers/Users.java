@@ -8,7 +8,9 @@ import play.mvc.Controller;
 import play.mvc.With;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Lukasz Piliszczuk <lukasz.pili AT gmail.com>
@@ -77,6 +79,64 @@ public class Users extends Controller {
 
         User user = getUserFromSession();
 
-        render(user);
+        // get user artists
+        List<Artist> artistsSession = user.artists;
+
+        // get 10 user artists not null
+        List<Artist> userArtists = new ArrayList<Artist>();
+        Integer count = 0;
+        for (Artist artist : artistsSession) {
+
+            // only 10
+            if (count == 10) {
+                break;
+            }
+
+            // only not null
+            if (null == artist.imagePath) {
+                continue;
+            }
+
+            userArtists.add(artist);
+
+            count++;
+        }
+
+        // get all users
+        List<User> users = User.findAll();
+
+        Map<Integer, User> matchingUsers = new HashMap<Integer, User>();
+
+        //matchingUsers = List<Integer> matchingPercents = new ArrayList<Integer>();
+
+        List<Artist> artistsTest = Artist.findAll();
+
+        count = 0;
+        for (User item : users) {
+
+            if(count == 10) {
+                continue;
+            }
+
+            if (item.equals(user)) {
+                continue;
+            }
+
+            // get the artists from the user to compare
+            List<Artist> artistsCompare = item.artists;
+
+            // get the matching list
+            List<Artist> matchingArtists = new ArrayList<Artist>();
+            matchingArtists.addAll(CollectionUtils.retainAll(artistsSession, artistsCompare));
+
+            // get the matching percent
+            Integer percentSession = matchingArtists.size() * 100 / artistsSession.size();
+
+            matchingUsers.put(percentSession, item);
+
+            count++;
+        }
+
+        render(user, userArtists, matchingUsers);
     }
 }

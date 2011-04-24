@@ -1,22 +1,11 @@
 package models;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import models.enums.Gender;
 import play.data.validation.Email;
 import play.data.validation.Required;
 import play.db.jpa.Model;
-import play.mvc.Http;
-import play.mvc.Scope;
-
-import play.db.jpa.Model;
 
 import javax.persistence.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -66,5 +55,4 @@ public class User extends Model {
         this.city = city;
         this.interestedBy = interestedBy;
     }
-
 }

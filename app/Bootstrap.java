@@ -1,3 +1,4 @@
+import models.User;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
 import play.test.Fixtures;
@@ -13,5 +14,9 @@ public class Bootstrap extends Job {
 
         //Fixtures.deleteAllModels();
         //Fixtures.loadModels("data.yml");
+
+        if(User.find("byEmail", "tatianay@gmail.com").first() == null) {
+            Fixtures.loadModels("data.yml");
+        }
     }
 }
