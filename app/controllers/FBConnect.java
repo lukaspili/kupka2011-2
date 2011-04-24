@@ -81,7 +81,7 @@ public class FBConnect extends Controller {
                         user = convertToUserAndSave(jsonData);
                     }
 
-                    session.put("user", email);
+                    Scope.Session.current().put("user", email);
 
                 } catch (Exception e) {
                     throw new RuntimeException("Unexpected: " + e);
