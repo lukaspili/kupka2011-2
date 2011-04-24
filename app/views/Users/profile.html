@@ -1,0 +1,54 @@
+#{extends 'main.html' /}
+#{set title:'T\'écoutes quoi ?' /}
+
+<div class="row">
+  <div class="fourcol profile-col">
+    <div class="profile-col-wrapper">
+      <h1>${user.firstName} ${user.lastName}</h1>
+      <div class="profile-pic">
+        <img src="https://graph.facebook.com/${user.facebookId}/picture?type=large"/>
+      </div>
+      <div class="profile-info">    
+        <ul>
+          <li>
+            <strong>E-mail :</strong> ${user.email}
+          </li>
+          <li>
+            <strong>Date de naissance :</strong> ${user.birthDate.format('dd MMMM yyyy', 'fr')}
+          </li>
+          <li>
+            <strong>Ville :</strong> ${user.city.name}
+          </li>
+          <li>
+            <strong>Intéressé par :</strong> ${user.interestedBy?.capFirst()}
+          </li>
+        </ul> 
+      </div>
+      <div class="profile-bio">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+    </div>
+  </div>
+  <div class="eightcol last">
+
+    <div>
+      <ul>
+      #{list items:user.artists, as:'artist'}
+      #{if artist.imagePath != null}
+      <li>
+        <img src="${artist.imagePath}"/>
+        <span>
+          ${artist.name}
+        <span>
+      </li>
+      #{/if}
+      #{/list}
+      </ul>
+    </div>
+  </div>
+</div>

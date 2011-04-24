@@ -73,4 +73,10 @@ public class Users extends Controller {
         render(user);
     }
 
+    public static void profile() {
+
+        User user = getUserFromSession();
+
+        render(user);
+    }
 }
