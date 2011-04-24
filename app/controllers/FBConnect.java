@@ -45,7 +45,7 @@ public class FBConnect extends Controller {
             redirect(landUrl);
         }
         if (code != null) {
-            String authUrl = "https://graph.facebook.com/oauth/access_token?client_id="+CLIENT_ID+"&redirect_uri=http://localhost:9000/fbconnect/callback&client_secret="+CLIENT_SECRET+"&code=" + code;
+            String authUrl = "https://graph.facebook.com/oauth/access_token?client_id=" + CLIENT_ID + "&redirect_uri=http://localhost:9000/fbconnect/callback&client_secret=" + CLIENT_SECRET + "&code=" + code;
             WSUrlFetch ws = new WSUrlFetch();
             String response = ws.newRequest(authUrl).get().getString();
             String accessToken = null;
@@ -77,7 +77,7 @@ public class FBConnect extends Controller {
 
                     String email = jsonData.get("email").getAsString();
                     User user = User.find("byEmail", email).first();
-                    if(user == null) {
+                    if (user == null) {
                         user = convertToUserAndSave(jsonData);
                     }
 
@@ -118,19 +118,22 @@ public class FBConnect extends Controller {
         List<Artist> artists = new ArrayList<Artist>();
         for (JsonElement jsonMusic : jsonMusics) {
             String artistName = jsonMusic.getAsJsonObject().get("name").getAsString();
-            Artist artist = Artist.find("byName", artistName).first();
-            if(artist == null) {
-                artist = new LastFMApi("1cae0d3a28fc36a955ea9241610d113a").retrieveArtist(artistName, LastFMApi.PictureSize.LARGE_SQUARE);
-                if(artist == null) continue;
-                Artist.em().persist(artist);
+            Artist artist = new LastFMApi("1cae0d3a28fc36a955ea9241610d113a").retrieveArtist(artistName, LastFMApi.PictureSize.LARGE_SQUARE);
+            if (artist != null) {
+                Artist artistInDb = Artist.find("byName", artist.name).first();
+                if(artistInDb == null) {
+                    Artist.em().persist(artist);
+                } else {
+                    artist = artistInDb;
+                }
+                artists.add(artist);
             }
-            artists.add(artist);
         }
 
         Long facebookId = data.get("id").getAsLong();
 
         City city = City.find("byName", cityName).first();
-        if(city == null) {
+        if (city == null) {
             city = new City();
             city.name = cityName;
         }
