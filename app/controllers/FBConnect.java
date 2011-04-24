@@ -31,6 +31,9 @@ public class FBConnect extends Controller {
     private static final String GENERAL_PROFILE_URL = "https://graph.facebook.com/me?access_token=";
     private static final String MUSIC_PROFILE_URL = "https://graph.facebook.com/me/music?access_token=";
 
+    //private static final String CALLBACK_HOSTNAME = "localhost:9000";
+    private static final String CALLBACK_HOSTNAME = "www.tecoutesquoi.com";
+
     //private static final String CLIENT_ID = "157297254334553";
     //private static final String CLIENT_SECRET = "702df18b116a24006e240cbe8168b62f";
 
@@ -51,7 +54,7 @@ public class FBConnect extends Controller {
             redirect(landUrl);
         }
         if (code != null) {
-            String authUrl = "https://graph.facebook.com/oauth/access_token?client_id=" + CLIENT_ID + "&redirect_uri=http://localhost:9000/fbconnect/callback&client_secret=" + CLIENT_SECRET + "&code=" + code;
+            String authUrl = "https://graph.facebook.com/oauth/access_token?client_id=" + CLIENT_ID + "&redirect_uri=http://" + CALLBACK_HOSTNAME + "/fbconnect/callback&client_secret=" + CLIENT_SECRET + "&code=" + code;
             WSUrlFetch ws = new WSUrlFetch();
             String response = ws.newRequest(authUrl).get().getString();
             String accessToken = null;
@@ -129,7 +132,7 @@ public class FBConnect extends Controller {
             Artist artist = new LastFMApi("1cae0d3a28fc36a955ea9241610d113a").retrieveArtist(artistName, LastFMApi.PictureSize.LARGE_SQUARE);
             if (artist != null) {
                 Artist artistInDb = Artist.find("byName", artist.name).first();
-                if(artistInDb == null) {
+                if (artistInDb == null) {
                     Artist.em().persist(artist);
                 } else {
                     artist = artistInDb;
